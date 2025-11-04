@@ -9,8 +9,8 @@ Level 4
 """
 
 convertedNum = 0
-convertedNumIntPart = 0
-convertedNumDecPart = 0
+#convertedNumIntPart = 0
+convertedNumRemPart = 0
 storedConvertedNums = []
 storedConvertedNumsWithPluses = []
 numberInSystem = 0
@@ -18,49 +18,73 @@ numberSystem = ""
 finalNumSysToInt = 0
 remDivRes = 0
 
-def calcOfIntToNumSys(numInPlaceVal : int, numberToSquareBy : int, count : int):
+def calculateNumberSystemToDecimal(numInPlaceVal : int, numberToSquareBy : int, count : int):
     convertedNum = numInPlaceVal*numberToSquareBy**count
     print(f'{numInPlaceVal} x {numberToSquareBy}^{count} = {convertedNum}')
     storedConvertedNums.append(convertedNum)
     storedConvertedNumsWithPluses.append(str(convertedNum))
     storedConvertedNumsWithPluses.append("+")
 
-# def calcOfNumSysToInt(numInPlaceVal : int, numberToDivBy : int,):
-#     convertedNumIntPart = numInPlaceVal//numberToDivBy
-#     convertedNumDecPart = numInPlaceVal % numberToDivBy
-#     print(f'{numInPlaceVal} / {numberToDivBy} = {convertedNum}')
-#     storedConvertedNums.append(convertedNumDecPart)
-#     storedConvertedNumsWithPluses.append(str(convertedNumDecPart))
-#     storedConvertedNumsWithPluses.append("+")
+#need to have while until int div = 0 AKA when convertedNumIntPart = 0 
 
-def printingOfResults():
+def calculateDecimalToNumberSystem(numInPlaceVal : int, numberToDivBy : int):
+    convertedNumIntPart = numInPlaceVal//numberToDivBy
+    convertedNumRemPart = numInPlaceVal % numberToDivBy
+    print(f'{numInPlaceVal} // {numberToDivBy} = {convertedNumIntPart}')
+    print(f'{numInPlaceVal} % {numberToDivBy} = {convertedNumRemPart}')
+    storedConvertedNums.append(convertedNumRemPart)
+
+    return convertedNumIntPart;
+
+
+# def printingOfResultsIntToNumSys():
+#     print(reversed(storedConvertedNums))
+
+def printingOfResultsNumSysToInt():
     storedConvertedNumsWithPluses.pop()
     print(storedConvertedNumsWithPluses)
     print(f"= {finalNumSysToInt}")
 
 typeOfConversion = input("Would you like to convert from decimal to a number system(1) or from a number system to decimal(2)? :  ")
 if typeOfConversion == "1":
-    hexadecimal = input("What decimal would you like to convert? : ")
-    numberSystem = input("Please type your number system's base amount of unique numbers (2-9) or 16? : ").lower()
+    decimal = int(input("What decimal would you like to convert? : "))
+    numberSystem = int(input("Please type your number system's base amount of unique numbers (2-9) or 16? : "))
     
-    if numberSystem == "2":
-        print()
-    elif numberSystem == "3":
-        print()
-    elif numberSystem == "4":
-        print()
-    elif numberSystem == "5":
-        print()
-    elif numberSystem == "6":
-        print()
-    elif numberSystem == "7":
-        print()
-    elif numberSystem == "8":
-        print()
-    elif numberSystem == "9":
-        print()
-    elif numberSystem == "16":
-        print();
+
+
+
+    convertedNumIntPart = decimal
+
+    while convertedNumIntPart > 0:
+        convertedNumIntPart = calculateDecimalToNumberSystem(convertedNumIntPart, numberSystem)
+        print(storedConvertedNums)
+        
+
+    print(storedConvertedNums)
+    print(f"Final resulting number is: {reversed(storedConvertedNums)}")
+
+
+    # if numberSystem == "2":
+    #     while convertedNumIntPart > 0:
+    #         calculateNumberSystemToDecimal()
+
+    # elif numberSystem == "3":
+    #     print()
+    # elif numberSystem == "4":
+    #     print()
+    # elif numberSystem == "5":
+    #     print()
+    # elif numberSystem == "6":
+    #     print()
+    # elif numberSystem == "7":
+    #     print()
+    # elif numberSystem == "8":
+    #     print()
+    # elif numberSystem == "9":
+    #     print()
+    # elif numberSystem == "16":
+    #     print();
+
 
 elif typeOfConversion == "2":
 
@@ -85,11 +109,11 @@ elif typeOfConversion == "2":
         numberInSystem = [int(x) for x in str(numberInSystem)]
         count = 0
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,2,count)
+            calculateNumberSystemToDecimal(i,2,count)
             count+=1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 
     # TERNARY
     elif numberSystem == 3:
@@ -100,11 +124,11 @@ elif typeOfConversion == "2":
             numberInSystem = int(input("Please type a number only with 0-2s: "))
         numberInSystem = [int(x) for x in str(numberInSystem)]
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,3,count)
+            calculateNumberSystemToDecimal(i,3,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 # 10202
     # QUARTERNARY
     elif numberSystem == 4:
@@ -114,11 +138,11 @@ elif typeOfConversion == "2":
         numberInSystem = [int(x) for x in str(numberInSystem)]
         count = 0
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,4,count)
+            calculateNumberSystemToDecimal(i,4,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 
     #  QUINARY
     elif numberSystem == 5:
@@ -128,11 +152,11 @@ elif typeOfConversion == "2":
         numberInSystem = [int(x) for x in str(numberInSystem)]
         count = 0
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,5,count)
+            calculateNumberSystemToDecimal(i,5,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 
     # SENARY
     elif numberSystem == 6:
@@ -142,11 +166,11 @@ elif typeOfConversion == "2":
         numberInSystem = [int(x) for x in str(numberInSystem)]
         count = 0
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,6,count)
+            calculateNumberSystemToDecimal(i,6,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 
     # SEPTINARY
     elif numberSystem == 7:
@@ -156,11 +180,11 @@ elif typeOfConversion == "2":
         numberInSystem = [int(x) for x in str(numberInSystem)]
         count = 0
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,7,count)
+            calculateNumberSystemToDecimal(i,7,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 
     # OCTAL
     elif numberSystem == 8:
@@ -170,11 +194,11 @@ elif typeOfConversion == "2":
         numberInSystem = [int(x) for x in str(numberInSystem)]
         count = 0
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,8,count)
+            calculateNumberSystemToDecimal(i,8,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 
     # NONAL
     elif numberSystem == 9:
@@ -184,11 +208,11 @@ elif typeOfConversion == "2":
         numberInSystem = [int(x) for x in str(numberInSystem)]
         count = 0
         for i in reversed(numberInSystem):
-            calcOfIntToNumSys(i,9,count)
+            calculateNumberSystemToDecimal(i,9,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
 
     # HEXADECiMAIL
     elif numberSystem == 16:
@@ -199,23 +223,23 @@ elif typeOfConversion == "2":
         numberInSystem = [str(x) for x in str(numberInSystem)]
         for i in reversed(numberInSystem):
             if i.find("a")>-1: 
-                calcOfIntToNumSys(10, 16, count)
+                calculateNumberSystemToDecimal(10, 16, count)
             elif i.find("b")>-1:
-                calcOfIntToNumSys(11,16,count)
+                calculateNumberSystemToDecimal(11,16,count)
             elif i.find("c")>-1:
-                calcOfIntToNumSys(12,16,count)
+                calculateNumberSystemToDecimal(12,16,count)
             elif i.find("d")>-1:
-                calcOfIntToNumSys(13,16,count)
+                calculateNumberSystemToDecimal(13,16,count)
             elif i.find("e")>-1:
-                calcOfIntToNumSys(14,16,count)
+                calculateNumberSystemToDecimal(14,16,count)
             elif i.find("f")>-1:
-                calcOfIntToNumSys(15,16,count)
+                calculateNumberSystemToDecimal(15,16,count)
             else:
-                calcOfIntToNumSys(int(i),16,count)
+                calculateNumberSystemToDecimal(int(i),16,count)
             count += 1
         for i in storedConvertedNums:
             finalNumSysToInt += i
-        printingOfResults()
+        printingOfResultsNumSysToInt()
     else:
         print(f"{numberSystem} number system dose not exist or is not a convertable option.")
         numberSystem = input("Try another number system to convert from: ").lower()
